@@ -1,6 +1,10 @@
 package com.example.androidlabs;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.widget.*;
 
 import android.os.Bundle;
@@ -12,8 +16,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_gridlayout);
-        final Button clickBtn = findViewById(R.id.button1);
+        setContentView(R.layout.activity_main_login);
+        //SharedPreferences pref = new getSharedPreferences(Context.MODE_PRIVATE, 1); anything with shared preferences shows errors
+
+        final Button logBtn = findViewById(R.id.loginButton);
+        Intent nextPage = new Intent(this, ProfileActivity.class);
+        logBtn.setOnClickListener((click) -> {
+            startActivity(nextPage);
+        });
+       /* final Button clickBtn = findViewById(R.id.button1);
         clickBtn.setOnClickListener((click) -> {
             Toast.makeText(MainActivity.this, getResources().getString(R.string.toast_message),Toast.LENGTH_LONG).show();});
         final CheckBox chBox = findViewById(R.id.CheckBox);
@@ -43,6 +54,11 @@ public class MainActivity extends AppCompatActivity {
                             .setAction(getResources().getString(R.string.undo_string), click -> sw.setChecked(!b)).show();
                 }
             }
-        });
+        });*/
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+
     }
 }
