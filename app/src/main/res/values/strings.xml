@@ -12,4 +12,10 @@
     <string name="off_string">off</string>
     <string name="undo_string">Undo</string>
     <string name="type_here">type here</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
 </resources>
