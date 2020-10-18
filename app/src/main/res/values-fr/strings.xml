@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Android Labs</string>
-    <string name="hello_message">Bonjour!</string>
-    <string name="ButtonText">Je suis un bouton</string>
-    <string name="GUI_message">Regarde mon GUI:</string>
-    <string name="click_me">CLIQUEZ ICI</string>
-    <string name="check_text">Regarde ça!</string>
-    <string name="toast_message">Voici plus d\'informations</string>
-    <string name="check_message">La case à cocher est maintenant </string>
-    <string name="switch_message">Le commutateur est maintenant </string>
-    <string name="on_string">activé</string>
-    <string name="off_string">dèsactivée</string>
-    <string name="undo_string">Annuler</string>
-    <string name="type_here">écrivez ici</string>
+    <string name="app_name">AndroidLabs</string>
+    <string name="login">Connecter</string>
+    <string name="enter_email">Entrez votre addresse courriel:</string>
+    <string name="your_email">Votre addresse courriel:</string>
+    <string name="enter_password">Tappez votre mot de passe:</string>
+    <string name="your_name">Votre nom:</string>
+    <string name="enter_name">Entrez votre nom</string>
+    <string name="your_picture">Votre photo:</string>
+    <string name="take_picture">Cliquez sur le bouton ci-dessus pour prendre une photo.</string>
+    <string name="your_profile">Your profile</string>
+    <string name="chat">Clavarder</string>
+    <string name="send">Envoyer</string>
+    <string name="message">Message…</string>
+    <string name="receive">Recevoir</string>
+    <string name="delete">Voulez-vous supprimer ceci?</string>
+    <string name="row">La ligne sélectionnée est:&#160;</string>
+    <string name="database">L\'identifiant dans la base de données est:&#160;</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
 </resources>

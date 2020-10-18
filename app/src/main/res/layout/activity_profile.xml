@@ -1,54 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Your Profile" />
+        android:text="@string/your_profile"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Your Name:" />
-    <ListView
-        android:id="@+id/theListView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:text="@string/your_name"/>
     <EditText
+        android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/NameText"
-        android:hint="Enter your Name:"/>
+        android:inputType="textPersonName"
+        android:hint="@string/enter_name"
+        android:autofillHints="@string/enter_name"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Your email:"/>
+        android:text="@string/your_email"/>
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:hint="Enter your email"/>
+      android:id="@+id/email"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:inputType="textEmailAddress"
+      android:hint="@string/enter_email"
+      android:autofillHints="@string/enter_email"/>
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Your picture:"/>
-    <ImageButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/picture_frame"
-        android:id="@+id/PicButton"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Click the button above to take a picture"
-        />
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/your_picture"/>
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Go to chat"
-        android:id="@+id/ChatButton"
-        />
-
-
+      android:id="@+id/chat"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/chat"/>
+    <ImageButton
+      android:id="@+id/picture"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:contentDescription="@string/your_picture"
+      android:src="@android:drawable/picture_frame"/>
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/take_picture"/>
 </LinearLayout>

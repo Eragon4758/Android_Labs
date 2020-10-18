@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter your email address:" />
+        android:text="@string/enter_email"/>
     <EditText
+        android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/emailEditText"
-        android:inputType="textEmailAddress"
-        android:hint="Type email here:"/>
+        android:inputType="textEmailAddress"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Type your password:"/>
+        android:text="@string/enter_password"/>
     <EditText
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"/>
     <Button
+        android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/loginButton"
-        android:text="login"/>
-
+        android:text="@string/login"/>
 
 </LinearLayout>

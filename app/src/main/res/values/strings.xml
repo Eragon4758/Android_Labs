@@ -1,21 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Android Labs</string>
-    <string name="hello_message">Hello World!</string>
-    <string name="ButtonText">I\'m a button</string>
-    <string name="GUI_message">Look at my GUI:</string>
-    <string name="click_me">CLICK HERE</string>
-    <string name="check_text">Check this out!</string>
-    <string name="toast_message">Here\'s more information</string>
-    <string name="check_message">The check box is now </string>
-    <string name="switch_message">The switch is now </string>
-    <string name="on_string">on</string>
-    <string name="off_string">off</string>
-    <string name="undo_string">Undo</string>
-    <string name="type_here">type here</string>
-    <string name="title_activity_profile">ProfileActivity</string>
-    <!--
-    This string is used for square devices and overridden by hello_world in
-    values-round/strings.xml for round devices.
-    -->
-    <string name="hello_world">Hello Square World!</string>
+    <string name="app_name">AndroidLabs</string>
+    <string name="login">Login</string>
+    <string name="enter_email">Enter your email address:</string>
+    <string name="your_email">Your email:</string>
+    <string name="enter_password">Type your password:</string>
+    <string name="your_name">Your name:</string>
+    <string name="enter_name">Enter your name</string>
+    <string name="your_picture">Your picture:</string>
+    <string name="take_picture">Click the button above to take a picture.</string>
+    <string name="your_profile">Your profile</string>
+    <string name="chat">Chat</string>
+    <string name="send">Send</string>
+    <string name="message">Message…</string>
+    <string name="receive">Receive</string>
+    <string name="delete">Do you want to delete this?</string>
+    <string name="row">The selected row is: </string>
+    <string name="database">The id in the database is: </string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>
