@@ -35,6 +35,12 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:text="@string/your_picture"/>
+    <ImageButton
+        android:id="@+id/picture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/your_picture"
+        android:src="@android:drawable/picture_frame"/>
     <Button
       android:id="@+id/chat"
       android:layout_width="match_parent"
@@ -45,12 +51,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Weather"/>
-    <ImageButton
-      android:id="@+id/picture"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:contentDescription="@string/your_picture"
-      android:src="@android:drawable/picture_frame"/>
     <TextView
       android:layout_width="match_parent"
       android:layout_height="wrap_content"

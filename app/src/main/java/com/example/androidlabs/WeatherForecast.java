@@ -32,7 +32,7 @@ public class WeatherForecast extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_weather_forcast);
+        setContentView(R.layout.layout_notround);
         ForecastQuery forecast = new ForecastQuery();
         forecast.execute("https://api.openweathermap.org/data/2.5/weather?q=ottawa,ca&APPID=7e943c97096a9784391a981c4d878b22&mode=xml&units=metric");
     }
@@ -151,13 +151,13 @@ public class WeatherForecast extends AppCompatActivity {
         {
             Log.i("HTTP", fromDoInBackground);
             TextView temp = findViewById(R.id.temperatureText);
-            temp.setText(tempValue);
+            temp.setText("Temperature: "+tempValue);
             TextView mintemp = findViewById(R.id.minTemp);
-            mintemp.setText(min);
+            mintemp.setText("Minimum Temp: "+min);
             TextView maxtemp = findViewById(R.id.maxTemp);
-            maxtemp.setText(max);
+            maxtemp.setText("Maximum Temp: "+max);
             TextView uvrate = findViewById(R.id.UVrating);
-            uvrate.setText(uv);
+            uvrate.setText("UV index: "+uv);
             ImageView image = findViewById(R.id.weatherMap);
             image.setImageBitmap(weatherIcon);
             ProgressBar bar = findViewById(R.id.progressBar);

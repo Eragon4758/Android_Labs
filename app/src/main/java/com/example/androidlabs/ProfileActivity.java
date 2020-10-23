@@ -21,6 +21,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Log.d(ACTIVITY_NAME, "In function: onCreate");
+        startActivity(new Intent(ProfileActivity.this, WeatherForecast.class));
         loadEmail();
         setListeners();
     }
