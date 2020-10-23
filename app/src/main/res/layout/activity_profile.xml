@@ -3,7 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginTop="27dp"
+    android:layout_marginBottom="27dp"
+    android:layout_marginLeft="48dp"
+    android:layout_marginRight="48dp">
 
     <TextView
         android:layout_width="match_parent"
@@ -19,40 +23,49 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:hint="@string/enter_name"
-        android:autofillHints="@string/enter_name"/>
+        android:autofillHints="@string/enter_name"
+        android:nextFocusDown="@id/email"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/your_email"/>
+        android:text="@string/your_email" />
     <EditText
-      android:id="@+id/email"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:inputType="textEmailAddress"
-      android:hint="@string/enter_email"
-      android:autofillHints="@string/enter_email"/>
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="@string/enter_email"
+        android:autofillHints="@string/enter_email"
+        android:nextFocusUp="@id/name"
+        android:nextFocusDown="@id/chat"
+        />
     <TextView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:text="@string/your_picture"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/your_picture" />
     <Button
-      android:id="@+id/chat"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:text="@string/chat"/>
+        android:id="@+id/chat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/chat"
+        android:nextFocusUp="@id/email"
+        android:nextFocusDown="@id/weather"/>
     <Button
         android:id="@+id/weather"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Weather"/>
+        android:text="Weather"
+        android:nextFocusUp="@id/chat"
+        android:nextFocusDown="@id/picture"/>
     <ImageButton
-      android:id="@+id/picture"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:contentDescription="@string/your_picture"
-      android:src="@android:drawable/picture_frame"/>
+        android:id="@+id/picture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/your_picture"
+        android:src="@android:drawable/picture_frame"
+        android:nextFocusUp="@id/weather" />
     <TextView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:text="@string/take_picture"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/take_picture"/>
 </LinearLayout>

@@ -4,8 +4,10 @@
 
     <uses-feature
         android:name="android.hardware.camera"
-        android:required="true" />
+        android:required="false" />
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" /> 
+    <uses-feature android:name="android.software.leanback" android:required="true"/> 
 
     <application
         android:icon="@mipmap/ic_launcher"
