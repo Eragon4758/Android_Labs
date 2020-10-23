@@ -38,6 +38,12 @@ public class ProfileActivity extends AppCompatActivity {
                                 new Intent(ProfileActivity.this, ChatRoomActivity.class)
                         )
                 );
+        findViewById(R.id.weather)
+                .setOnClickListener(v ->
+                        startActivity(
+                                new Intent(ProfileActivity.this, WeatherForecast.class)
+                        )
+                );
     }
 
     /**
