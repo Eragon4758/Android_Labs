@@ -1,6 +1,5 @@
 package com.example.androidlabs;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -21,6 +20,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Log.d(ACTIVITY_NAME, "In function: onCreate");
+
         loadEmail();
         setListeners();
     }
@@ -30,20 +30,21 @@ public class ProfileActivity extends AppCompatActivity {
      */
     private void setListeners() {
         findViewById(R.id.picture)
-                .setOnClickListener(v -> dispatchTakePictureIntent());
+            .setOnClickListener(v -> dispatchTakePictureIntent());
 
         findViewById(R.id.chat)
-                .setOnClickListener(v ->
-                        startActivity(
-                                new Intent(ProfileActivity.this, ChatRoomActivity.class)
-                        )
-                );
+            .setOnClickListener(v ->
+                startActivity(
+                    new Intent(ProfileActivity.this, ChatRoomActivity.class)
+                )
+            );
+
         findViewById(R.id.weather)
-                .setOnClickListener(v ->
-                        startActivity(
-                                new Intent(ProfileActivity.this, WeatherForecast.class)
-                        )
-                );
+            .setOnClickListener(v ->
+                startActivity(
+                    new Intent(ProfileActivity.this, WeatherForecast.class)
+                )
+            );
     }
 
     /**
@@ -62,12 +63,11 @@ public class ProfileActivity extends AppCompatActivity {
     private void loadEmail() {
         EditText emailText = findViewById(R.id.email);
         emailText.setText(
-                getSharedPreferences(LoginActivity.LAB_3, Context.MODE_PRIVATE)
-                        .getString("email", "")
+            getSharedPreferences(LoginActivity.LAB_3, Context.MODE_PRIVATE)
+                .getString("email", "")
         );
     }
 
-    @SuppressLint("MissingSuperCall")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d(ACTIVITY_NAME, "In function: onActivityResult");
@@ -77,6 +77,7 @@ public class ProfileActivity extends AppCompatActivity {
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             mImageButton.setImageBitmap(imageBitmap);
         }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

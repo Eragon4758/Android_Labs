@@ -1,8 +1,7 @@
 package com.example.androidlabs;
 
-import android.content.ContentValues;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,29 +11,47 @@ import android.widget.ListView;
 import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.androidlabs.database.MessageRepository;
 import com.example.androidlabs.models.Message;
 import com.example.androidlabs.models.Message.Type;
 import java.util.ArrayList;
 import java.util.List;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
 public class ChatRoomActivity extends AppCompatActivity {
-    private static final String TAG = "ChatRoomActivity";
+
+    DetailsFragment fragment;
     private final List<Message> messages = new ArrayList<>();
     MessageListAdapter messageListAdapter = new MessageListAdapter();
-    SQLiteDatabase db;
+
+    MessageRepository messageRepository;
+    private boolean onTablet = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
+
+        // Check if is on a tablet.
+        if (findViewById(R.id.frame) != null) {
+            onTablet = true;
+        }
+
+        messageRepository = new MessageRepository(this);
+
         setListeners();
-        loadDataFromDatabase();
+        load();
+    }
+
+    /**
+     * Loads the data from database and notifies the adapter.
+     */
+    private void load() {
+        messages.addAll(messageRepository.findAll());
         messageListAdapter.notifyDataSetChanged();
     }
 
     /**
-     * Set event listeners on Views of this Activity
+     * Set event listeners on Views of this Activity.
      */
     private void setListeners() {
         // Set the list's adapter: how it will function.
@@ -44,21 +61,11 @@ public class ChatRoomActivity extends AppCompatActivity {
         // Set actions for send and receive button.
         EditText text = findViewById(R.id.message);
         findViewById(R.id.send).setOnClickListener(v -> {
-            //add to database here. get Id into a variable and send id to addMessage
-            ContentValues newRowValues = new ContentValues();
-            newRowValues.put(MyOpener.COL_SENDER, "SENT");
-            newRowValues.put(MyOpener.COL_MESSAGE,text.getText().toString());
-            long id = db.insert(MyOpener.TABLE_NAME, "NullColumnName", newRowValues);
-            addMessage( Type.SENT, text.getText().toString(), id);
+            addMessage(text.getText().toString(), Type.SENT);
             text.setText(null);
         });
         findViewById(R.id.receive).setOnClickListener(v -> {
-            //add to database here. get Id into a variable and send id to addMessage
-            ContentValues newRowValues = new ContentValues();
-            newRowValues.put(MyOpener.COL_SENDER, "RECEIVED");
-            newRowValues.put(MyOpener.COL_MESSAGE,text.getText().toString());
-            long id = db.insert(MyOpener.TABLE_NAME, "NullColumnName", newRowValues);
-            addMessage(Type.RECEIVED, text.getText().toString(), id);
+            addMessage(text.getText().toString(), Type.RECEIVED);
             text.setText(null);
         });
 
@@ -66,35 +73,62 @@ public class ChatRoomActivity extends AppCompatActivity {
         messageList.setOnItemLongClickListener(((parent, view, position, id) -> {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.
-                    setTitle(getString(R.string.delete))
-                    .setMessage(
-                            getString(R.string.row) + position + "\n" +
-                                    getString(R.string.database) + messageListAdapter.getItemId(position)
-                    )
-                    .setPositiveButton(getString(R.string.yes), (click, arg) -> {
-                        //delete from database here
-                        db.delete(MyOpener.TABLE_NAME, "_id=?", new String[] {Long.toString(messageListAdapter.getItemId(position))});
-                        messages.remove(position);
-
-                        messageListAdapter.notifyDataSetChanged();
-                    })
-                    .setNegativeButton(R.string.no, (click, arg) -> {
-                    })
-                    .show();
+                setTitle(getString(R.string.delete))
+                .setMessage(
+                    getString(R.string.row) + (position + 1) + "\n" +
+                        getString(R.string.database) + messageListAdapter.getItemId(position)
+                )
+                .setPositiveButton(getString(R.string.yes), (click, arg) -> {
+                    messageRepository.delete((Message) messageListAdapter.getItem(position));
+                    messages.remove(position);
+                    // Close fragment if it exists.
+                    if (onTablet && fragment != null) {
+                        getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+                    }
+                    messageListAdapter.notifyDataSetChanged();
+                })
+                .setNegativeButton(R.string.no, (click, arg) -> {
+                })
+                .show();
 
             return false;
         }));
+
+        messageList.setOnItemClickListener((list, item, position, id) -> {
+            Bundle dataToPass = new Bundle();
+            Message message = messages.get(position);
+            dataToPass.putString("message", message.getText());
+            dataToPass.putLong("id", message.getId());
+            dataToPass.putBoolean("status", message.getType().ordinal() == 0);
+            dataToPass.putBoolean("onTablet", onTablet);
+
+            if (onTablet) {
+                fragment = new DetailsFragment();
+                fragment.setArguments(dataToPass);
+                getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.frame, fragment)
+                    .commit();
+            } else {
+                Intent nextActivity =
+                    new Intent(ChatRoomActivity.this, EmptyActivity.class);
+                nextActivity.putExtras(dataToPass);
+                startActivity(nextActivity);
+            }
+
+        });
+
     }
 
     /**
-     * Add message to messages list and notifies the adapter.
+     * Add message to messages database and list, then notifies the adapter.
      *
      * @param text the message to add
      * @param type the type of message
      */
-    private void addMessage( Type type, String text, long ID) {
-        Message message = new Message(type, text, ID);
-        messages.add(message);
+    private void addMessage(String text, Type type) {
+        Message message = new Message(text, type);
+        messages.add(messageRepository.save(message));
         messageListAdapter.notifyDataSetChanged();
     }
 
@@ -112,7 +146,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         @Override
         public long getItemId(int position) {
-            return messages.get(position).getID();
+            return ((Message) getItem(position)).getId();
         }
 
         @Override
@@ -130,42 +164,6 @@ public class ChatRoomActivity extends AppCompatActivity {
             messageText.setText(messages.get(position).getText());
 
             return newView;
-        }
-    }
-    protected void loadDataFromDatabase(){
-        MyOpener dbOpener = new MyOpener(this);
-        db = dbOpener.getWritableDatabase();
-        String [] columns = {MyOpener.COL_ID, MyOpener.COL_SENDER, MyOpener.COL_MESSAGE};
-        Cursor results = db.query(false, MyOpener.TABLE_NAME, columns, null, null, null, null, null, null);
-        int IDIndex = results.getColumnIndex(MyOpener.COL_ID);
-        int SenderIndex = results.getColumnIndex(MyOpener.COL_SENDER);
-        int MessageIndex = results.getColumnIndex(MyOpener.COL_MESSAGE);
-        while(results.moveToNext())
-        {
-            String typeS = results.getString(SenderIndex);
-            String msg = results.getString(MessageIndex);
-            long id = results.getLong(IDIndex);
-            Type t;
-            if (typeS.equals("SENT")){
-                t = Type.SENT;
-            }
-            else{
-                t = Type.RECEIVED;
-            }
-            //add the new Contact to the array list:
-            messages.add(new Message(t, msg, id));
-        }
-        printCursor(results);
-    }
-    protected void printCursor( Cursor c ){
-        c.moveToFirst();
-        Log.v(TAG,"Database version number: " + db.getVersion());
-        Log.v(TAG,"Number of columns in cursor: " + c.getColumnCount());
-        Log.v(TAG,"Columns in cursor" + c.getColumnNames());
-        Log.v(TAG,"Number of results: " + c.getCount());
-        Log.v(TAG,"rows: ");
-        while(c.moveToNext()){
-            Log.v(TAG,c.getString(0) + " | " + c.getString(1)+" | " + c.getString(2));
         }
     }
 }

@@ -35,16 +35,6 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:text="@string/your_picture"/>
-    <Button
-      android:id="@+id/chat"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:text="@string/chat"/>
-    <Button
-        android:id="@+id/weather"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Weather"/>
     <ImageButton
       android:id="@+id/picture"
       android:layout_width="match_parent"
@@ -55,4 +45,14 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:text="@string/take_picture"/>
+    <Button
+      android:id="@+id/chat"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/chat"/>
+    <Button
+      android:id="@+id/weather"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/weather"/>
 </LinearLayout>
