@@ -1,5 +1,6 @@
 package com.example.androidlabs;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -44,8 +45,24 @@ public class TestToolbar extends AppCompatActivity {
             case R.id.overflow:
                 message = "You clicked on the overflow menu";
                 break;
+            case R.id.chatNav:
+                startActivity(
+                        new Intent(TestToolbar.this, ChatRoomActivity.class)
+                );
+                break;
+            case R.id.weatherNav:
+                startActivity(
+                        new Intent(TestToolbar.this, WeatherForecast.class)
+                );
+                break;
+            case R.id.loginNav:
+                setResult(500);
+                finish();
+                break;
         }
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        if (message != null) {
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        }
         return true;
     }
 }

@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ProfileActivity extends AppCompatActivity {
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int LOGOUT_CODE = 2;
     private static final String ACTIVITY_NAME = ProfileActivity.class.getSimpleName();
 
     @Override
@@ -49,7 +50,7 @@ public class ProfileActivity extends AppCompatActivity {
         findViewById(R.id.toolbarButton)
                 .setOnClickListener(v ->
                         startActivityForResult(
-                                new Intent(ProfileActivity.this, TestToolbar.class), 100
+                                new Intent(ProfileActivity.this, TestToolbar.class), LOGOUT_CODE
                         )
                 );
     }
@@ -83,6 +84,9 @@ public class ProfileActivity extends AppCompatActivity {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             mImageButton.setImageBitmap(imageBitmap);
+        }
+        if (requestCode == LOGOUT_CODE && resultCode == 500){
+            finish();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

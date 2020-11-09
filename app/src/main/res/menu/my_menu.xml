@@ -1,28 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <Item
+    <item
         android:id="@+id/choice1"
         android:title="choice 1"
         android:icon="@drawable/download"
         android:orderInCategory="1"
         app:showAsAction="always"/>
-    <Item
+    <item
         android:id="@+id/choice2"
         android:title="choice 2"
         android:icon="@drawable/edit"
         android:orderInCategory="2"
         app:showAsAction="always"/>
-    <Item
+    <item
         android:id="@+id/choice3"
         android:title="choice 3"
         android:icon="@drawable/refresh"
         android:orderInCategory="3"
         app:showAsAction="always"/>
-    <Item
+    <item
         android:id="@+id/overflow"
         android:title="overflow"
         android:icon="@drawable/more"
         android:orderInCategory="4"
         app:showAsAction="always"/>
+    <item
+        android:id="@+id/chatNav"
+        android:title="Go to Chat"
+        android:icon="@drawable/more"
+        android:orderInCategory="5"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/weatherNav"
+        android:title="Go to Weather"
+        android:icon="@drawable/more"
+        android:orderInCategory="6"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/loginNav"
+        android:title="Go to Login"
+        android:icon="@drawable/more"
+        android:orderInCategory="7"
+        app:showAsAction="never"/>
 </menu>
